@@ -14,3 +14,7 @@
 */obj
 /.vs
 /XamarinNDKSample/.vs/XamarinNDKSample/DesignTimeBuild
+/Android/RegisterAdd/RegisterAdd/bin/Debug
+/Android/RegisterAdd/RegisterAdd/obj
+/Android/RegisterAdd/.vs/RegisterAdd/v16
+/Android/RegisterAdd/RegisterAdd/bin/x86/Debug
