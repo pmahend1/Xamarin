@@ -1,30 +1,27 @@
 ﻿using Android.App;
-using Android.Content;
 using Android.OS;
 using Android.Runtime;
 using Android.Support.Design.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.Widget;
 using Android.Support.V7.App;
-using Android.Support.V7.Widget;
 using Android.Views;
 using Microsoft.AppCenter;
 using Microsoft.AppCenter.Analytics;
 using Microsoft.AppCenter.Crashes;
-using Realms;
-using RegisterAdd.Activities;
-using RegisterAdd.Helpers;
 using RegisterAdd.Models;
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using Debug = System.Diagnostics.Debug;
+using Fragment = Android.Support.V4.App.Fragment;
 
 namespace RegisterAdd
 {
     [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = false)]
     public class MainActivity : AppCompatActivity, NavigationView.IOnNavigationItemSelectedListener
     {
-        private RecyclerView usersRecyclerView;
         private List<User> Users = new List<User>();
+
         protected override void OnCreate(Bundle savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
@@ -36,7 +33,19 @@ namespace RegisterAdd
             Android.Support.V7.Widget.Toolbar toolbar = FindViewById<Android.Support.V7.Widget.Toolbar>(Resource.Id.toolbar);
             SetSupportActionBar(toolbar);
 
-
+            if (savedInstanceState == null)
+            {
+                try
+                {
+                   var fragment = ViewUserFragment.NewInstance();
+                    SupportFragmentManager.BeginTransaction().Replace(Resource.Id.flContent, fragment).Commit();
+                }
+                catch (System.Exception e)
+                {
+                    Debug.WriteLine(e.Message);
+                }
+        
+            }
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawer, toolbar, Resource.String.navigation_drawer_open, Resource.String.navigation_drawer_close);
             drawer.AddDrawerListener(toggle);
@@ -44,37 +53,6 @@ namespace RegisterAdd
 
             NavigationView navigationView = FindViewById<NavigationView>(Resource.Id.nav_view);
             navigationView.SetNavigationItemSelectedListener(this);
-
-            usersRecyclerView = FindViewById<RecyclerView>(Resource.Id.recyclerViewUsers);
-            var realm = Realm.GetInstance();
-
-            Users = realm.All<User>().OrderBy(x => x.DateAdded).ToList();
-            var usernames = Users.Select(c => c.Firstname + " " + c.Lastname).ToList();
-            var adapter = new UserListAdapter(usernames);
-            adapter.ItemClick += Adapter_ItemClick;
-            //adapter.OnCLi
-            RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(this);
-            usersRecyclerView.SetLayoutManager(mLayoutManager);
-            usersRecyclerView.SetItemAnimator(new DefaultItemAnimator());
-            usersRecyclerView.SetAdapter(adapter);
-
-            adapter.NotifyDataSetChanged();
-
-            var token = realm.All<User>().SubscribeForNotifications((sender, changes, error) =>
-            {
-                Users = realm.All<User>().OrderBy(x => x.DateAdded).ToList();
-                var usernames1 = Users.Select(c => c.Firstname + " " + c.Lastname).ToList();
-                var adapter1 = new UserListAdapter(usernames);
-                adapter.ItemClick += Adapter_ItemClick;
-                //adapter.OnCLi
-                RecyclerView.LayoutManager mLayoutManager1 = new LinearLayoutManager(this);
-                usersRecyclerView.SetLayoutManager(mLayoutManager1);
-                usersRecyclerView.SetItemAnimator(new DefaultItemAnimator());
-                usersRecyclerView.SetAdapter(adapter1);
-                // Access changes.InsertedIndices, changes.DeletedIndices, and changes.ModifiedIndices
-
-            });
-
         }
 
         public override void OnBackPressed()
@@ -107,59 +85,46 @@ namespace RegisterAdd
             return base.OnOptionsItemSelected(item);
         }
 
-
-
         public bool OnNavigationItemSelected(IMenuItem item)
         {
             int id = item.ItemId;
 
+            DrawerLayout mainLayout = (DrawerLayout)FindViewById(Resource.Id.drawer_layout);
+
             if (id == Resource.Id.nav_camera)
             {
-                // add user page
-                Intent addUserIntent = new Intent(this, typeof(AddUserActivity));
-                StartActivityForResult(addUserIntent, 200);
+                try
+                {
+                    var fragment = AddUserFragment.NewInstance();
+                    SupportFragmentManager.BeginTransaction().
+                        Replace(Resource.Id.flContent, fragment).
+                        AddToBackStack(nameof(AddUserFragment)).Commit();
+                }
+                catch (System.Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
             else if (id == Resource.Id.nav_gallery)
             {
-                //this page
+                var fragment = ViewUserFragment.NewInstance();
+                SupportFragmentManager.BeginTransaction().Replace(Resource.Id.flContent, fragment).Commit();
             }
-
+            else
+            {
+                //fr = ViewUserFragment.NewInstance(0);
+            }
 
             DrawerLayout drawer = FindViewById<DrawerLayout>(Resource.Id.drawer_layout);
             drawer.CloseDrawer(GravityCompat.Start);
             return true;
         }
+
         public override void OnRequestPermissionsResult(int requestCode, string[] permissions, [GeneratedEnum] Android.Content.PM.Permission[] grantResults)
         {
             Xamarin.Essentials.Platform.OnRequestPermissionsResult(requestCode, permissions, grantResults);
 
             base.OnRequestPermissionsResult(requestCode, permissions, grantResults);
         }
-        private void Adapter_ItemClick(object sender, UserListClickEventArgs e)
-        {
-            var pos_ = e.Position;
-            Intent in_ = new Intent(this, typeof(UserInfoActivity));
-            //Parcelable p = new Parcelable();
-            var user_ = Users[pos_];
-            in_.PutExtra("firstname", user_.Firstname);
-            in_.PutExtra("lastname", user_.Lastname);
-            in_.PutExtra("username", user_.Username);
-            //in_.PutExtra("firstname", user_.Firstname);
-            StartActivity(in_);
-        }
-
-
-
-        protected override void OnActivityResult(int requestCode, [GeneratedEnum] Result resultCode, Intent data)
-        {
-            base.OnActivityResult(requestCode, resultCode, data);
-
-            if (resultCode == Result.Ok)
-            {
-
-            }
-        }
     }
 }
-
-

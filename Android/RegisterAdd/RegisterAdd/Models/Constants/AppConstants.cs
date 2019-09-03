@@ -18,7 +18,8 @@
         public static readonly string PASSWORDS_DONT_MATCH = "Password and Confirm Password fields did not match";
         public static readonly string USER_ADDED = "Registration is successful";
         public static readonly string ERROR = "Error";
+        public static readonly string USERNAME_SHORT = "Username can not be less than 5 characters";
         public static readonly string USER_NOT_ADDED = "Something went wrong. Please try again later";
-        public static readonly string MEMBER_SINCE = "Member Since ";
+        public static readonly string MEMBER_SINCE = "User Since ";
     }
 }

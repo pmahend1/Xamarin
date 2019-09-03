@@ -1,22 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using RegisterAdd.Models.Constants;
+using System;
 using System.Text.RegularExpressions;
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Views;
-using Android.Widget;
-using RegisterAdd.Models.Constants;
 
 namespace RegisterAdd.Services
 {
     public class ValidationService
     {
         public static bool IsEmpty(string value) => (String.IsNullOrEmpty(value) || String.IsNullOrWhiteSpace(value));
-
 
         public static string ValidatePassword(string value)
         {
@@ -70,68 +60,24 @@ namespace RegisterAdd.Services
                 return AppConstants.REPEAT_SEQUENCE;
             }
 
-
             return String.Empty;
         }
 
-        public string CheckPasswordRealTime(string value)
+        public static string ValidateUsername(string user)
         {
-            //Check sequence
-            Regex sequenceDuplicates = new Regex(@"(.+)\1");
-            MatchCollection matchingSequenceList = sequenceDuplicates.Matches(value);
-            if (matchingSequenceList.Count > 0)
+            if (IsEmpty(user))
             {
-                return AppConstants.REPEAT_SEQUENCE;
+                return AppConstants.EMPTY_USERNAME;
             }
-
-            //Check allowed charecters
-            //Check string contains alpha numeric
-            Regex regexContainer = new Regex("^[a-zA-Z0-9]*$");
-
-            if (!regexContainer.IsMatch(value))
+            if (user.Length < 5)
             {
-                return AppConstants.PASSWORD_ALPHANUMERIC;
+                return AppConstants.USERNAME_SHORT;
             }
-
-            //Check length
-            if (value.Length < 5)
-            {
-                return AppConstants.PASSWORD_SHORT;
-            }
-            else
-            {
-                //Check string contains one Alphabet lowercase
-                regexContainer = new Regex(".*[a-z]+.*");
-
-                if (!regexContainer.IsMatch(value))
-                {
-                    return AppConstants.PASSWORD_1_ALPHA_LOWER;
-                }
-
-                //Check string contains one Alphabet uppercase
-                regexContainer = new Regex(".*[A-Z]+.*");
-
-                if (!regexContainer.IsMatch(value))
-                {
-                    return AppConstants.PASSWORD_1_ALPHA_UPPER;
-                }
-
-                //Check string contains one Number
-                regexContainer = new Regex(".*[0-9]+.*");
-
-                if (!regexContainer.IsMatch(value))
-                {
-                    return AppConstants.PASSWORD_1_NUMBER;
-                }
-            }
-
-            //Check Max length
-            if (value.Length > 12)
-            {
-                return AppConstants.PASSWORD_LONG;
-            }
-
             return String.Empty;
         }
+
+       
+
+
     }
 }

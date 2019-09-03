@@ -1,15 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-using Android.App;
-using Android.Content;
-using Android.OS;
-using Android.Runtime;
-using Android.Support.V7.Widget;
+﻿using Android.Support.V7.Widget;
 using Android.Views;
 using Android.Widget;
+using RegisterAdd.Models;
+using RegisterAdd.Models.Constants;
+using System;
+using System.Collections.Generic;
+using static Android.Views.ViewGroup;
 
 namespace RegisterAdd.Helpers
 {
@@ -19,9 +15,9 @@ namespace RegisterAdd.Helpers
 
         public event EventHandler<UserListClickEventArgs> ItemLongClick;
 
-        private List<string> items = new List<string>();
+        private List<User> items = new List<User>();
 
-        public UserListAdapter(List<string> data)
+        public UserListAdapter(List<User> data)
         {
             items = data;
         }
@@ -34,8 +30,11 @@ namespace RegisterAdd.Helpers
             var id = Resource.Layout.user_item_text_view;
             itemView = LayoutInflater.From(parent.Context).
                    Inflate(id, parent, false);
-
-            var vh = new UserListAdapterViewHolder(itemView, OnClick, OnLongClick);
+            var itemViewLL = itemView as LinearLayout;
+            var lp = itemViewLL.LayoutParameters as MarginLayoutParams;
+            lp.SetMargins(0, 5, 0, 10);
+            itemViewLL.LayoutParameters = lp;
+            var vh = new UserListAdapterViewHolder(itemViewLL, OnClick, OnLongClick);
             return vh;
         }
 
@@ -46,9 +45,11 @@ namespace RegisterAdd.Helpers
 
             // Replace the contents of the view with that element
             var holder = viewHolder as UserListAdapterViewHolder;
-            var d = holder.ItemView as TextView;
-            d.Text = item;
-
+            var view_
+                = holder.ItemView as View;
+            // d = item;
+            view_.FindViewById<TextView>(Resource.Id.textviewUsername).Text = item.Firstname + " " + item.Lastname;
+            view_.FindViewById<TextView>(Resource.Id.textviewSince).Text = AppConstants.MEMBER_SINCE + item.DateAdded.ToString("MM/dd/yyyy");
             // holder.TextView.Text = items[position];
             //holder.ItemView
         }
@@ -58,7 +59,5 @@ namespace RegisterAdd.Helpers
         private void OnClick(UserListClickEventArgs args) => ItemClick?.Invoke(this, args);
 
         private void OnLongClick(UserListClickEventArgs args) => ItemLongClick?.Invoke(this, args);
-
     }
-
 }
