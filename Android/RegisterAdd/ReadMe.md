@@ -24,3 +24,15 @@ This is Xamarin.Android native app making use of Drawer layout with 2 menu optio
 
 - App screen walkthrough - [Youtube/ScreenWalkthrough](https://youtu.be/VRL4MDuDoXU)
 - AppCenter integration walkthrough  [Youtube/AppCenterWalkthrough](https://youtu.be/kXK7ABYoVsI)
+
+## Screenshots
+<img src="Screenshots/1.jpg" width="200" height="300">  
+<img src="Screenshots/2.jpg" width="200" height="300">  
+<img src="Screenshots/3.jpg" width="200" height="300">  
+<img src="Screenshots/4.jpg" width="200" height="300">  
+<img src="Screenshots/5.jpg" width="200" height="300">  
+<img src="Screenshots/6.jpg" width="200" height="300">  
+<img src="Screenshots/7.jpg" width="200" height="300">  
+<img src="Screenshots/8.jpg" width="200" height="300">  
+												
+
