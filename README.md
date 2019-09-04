@@ -23,7 +23,7 @@ Basic calculator developed with Xamarin Android native.
 
 Add-view users.
 
--------------------------------;
+-------------------------------
 
 ## II. Forms
 
