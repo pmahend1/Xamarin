@@ -1,0 +1,97 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Application xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="tabapp.App">
+
+    <Application.Resources>
+        <ResourceDictionary>
+            <!--Global Styles-->
+            <Color x:Key="NavigationPrimary">#2196F3</Color>
+            <Style TargetType="NavigationPage">
+                <Setter Property="BarBackgroundColor" Value="{StaticResource NavigationPrimary}" />
+                <Setter Property="BarTextColor" Value="White" />
+            </Style>
+
+            <!--<ControlTemplate x:Key="MainPageTemplate">
+
+                <Grid VerticalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand"
+                      ColumnSpacing="0"
+                      RowSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="110" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+
+                    --><!-- Begin Header --><!--
+                    <StackLayout Orientation="Vertical"
+                                 HorizontalOptions="FillAndExpand"
+                                 VerticalOptions="FillAndExpand"
+                                 Spacing="0"
+                                 BackgroundColor="#2B2B2B"
+                                 HeightRequest="100"
+                                 Grid.Column="0"
+                                 Grid.Row="0">
+                        <StackLayout.Padding>
+                            <OnPlatform x:TypeArguments="Thickness"
+                                        iOS="10, 10, 10, 10"
+                                        Android="10, 10, 10, 10"
+                                        WinPhone="10, 10, 10, 10" />
+                        </StackLayout.Padding>
+                        --><!-- My header content to make my app the prettiest. --><!--
+                        <Image Source="icon.png"
+                               WidthRequest="30"
+                               HeightRequest="30">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="OnBackButtonPressed" />
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                    --><!-- End Header -->
+
+                    <!-- Begin Content --><!--
+                    <ScrollView Grid.Column="0"
+                                Grid.Row="1">
+                        <ContentPresenter VerticalOptions="FillAndExpand"
+                                          HorizontalOptions="FillAndExpand" />
+                    </ScrollView>
+                    --><!-- End Content --><!--
+                </Grid>
+            </ControlTemplate>-->
+            <ControlTemplate x:Key="MainPageTemplate">
+                <Grid VerticalOptions="FillAndExpand"
+                      HorizontalOptions="FillAndExpand"
+                      ColumnSpacing="0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="50" />
+                        <RowDefinition Height="*" />
+                    </Grid.RowDefinitions>
+                    <BoxView BackgroundColor="Blue"
+                             Grid.Column="0"
+                             Grid.Row="0"
+                             Grid.ColumnSpan="5" />
+                    <ImageButton Source="icon.png"
+                            Grid.Column="0"
+                            Grid.Row="0"
+                            Grid.ColumnSpan="1"
+                            Clicked="OnBackButtonPressed" />
+                    <Image Source="icon.png"
+                           Aspect="AspectFit"
+                           BackgroundColor="Transparent"
+                           Grid.Column="2"
+                           Grid.Row="0"
+                           Grid.ColumnSpan="1" />
+                    <ContentPresenter VerticalOptions="FillAndExpand"
+                                      HorizontalOptions="FillAndExpand"
+                                      Grid.Column="0"
+                                      Grid.Row="1"
+                                      Grid.ColumnSpan="5" />
+                </Grid>
+            </ControlTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+    
+</Application>

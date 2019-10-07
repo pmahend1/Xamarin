@@ -21,3 +21,15 @@
 /Android/RegisterAdd/RegisterAdd/bin/Release
 /Android/RegisterAdd/RegisterAdd.UITest/bin
 /Android/RegisterAdd/RegisterAdd.UITest/obj
+/Android/BasicCalculator/BasicCalculator/obj/Debug
+/Android/BasicCalculator/BasicCalculator/obj/Release
+/Forms/tabappControlTemplate/.vs/tabapp/v16
+/Forms/tabappControlTemplate/tabapp/tabapp/bin/Debug/netstandard2.0
+/Forms/tabappControlTemplate/tabapp/tabapp/obj
+/Forms/tabappControlTemplate/tabapp/tabapp.Android/obj/Debug
+/Forms/tabappControlTemplate/tabapp/tabapp.Android/obj/Release/90
+/Forms/tabappControlTemplate/tabapp/tabapp.Android/bin/Debug
+/Forms/tabappControlTemplate/tabapp/tabapp.Android/obj
+/Forms/tabappControlTemplate/tabapp/tabapp.iOS/obj
+*/bin/*
+*/obj/*
