@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="TitleViewSample.Page2"
+             NavigationPage.HasBackButton="False">
+    <NavigationPage.TitleView BackgroundColor="Blue">
+        <StackLayout Orientation="Horizontal" BackgroundColor="Blue">
+            <Image Source="company_logo"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Start">
+                <Image.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                </Image.GestureRecognizers>
+            </Image>
+            <Label Text="Hoefling Software"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="20" />
+            <Image Source="company_logo"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="End" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Welcome to Xamarin.Forms!"
+                VerticalOptions="CenterAndExpand" 
+                HorizontalOptions="CenterAndExpand" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

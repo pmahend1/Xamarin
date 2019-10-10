@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<local:CustomPage xmlns="http://xamarin.com/schemas/2014/forms"
+                  xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                  xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+                  xmlns:local="clr-namespace:TitleViewSample"
+                  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+                  mc:Ignorable="d"
+                  x:Class="TitleViewSample.Page3">
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="Page 3" />
+
+        </StackLayout>
+    </ContentPage.Content>
+</local:CustomPage>

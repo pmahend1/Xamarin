@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<StackLayout  xmlns="http://xamarin.com/schemas/2014/forms"
+              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              mc:Ignorable="d"
+              x:Class="TitleViewSample.NavigationBar"
+              Orientation="Horizontal">
+    <ImageButton Source="baseline_arrow_back_ios_24"
+                 VerticalOptions="CenterAndExpand"
+                 BackgroundColor="Transparent"
+                 HorizontalOptions="Start"
+                 Clicked="ImageButton_Clicked"
+                 IsVisible="{Binding ShowBackButton}" />
+    <Label Text="Hoefling Software"
+           HorizontalOptions="StartAndExpand"
+           VerticalOptions="CenterAndExpand"
+           FontAttributes="Bold"
+           FontSize="20" />
+    <Image Source="company_logo"
+           VerticalOptions="CenterAndExpand"
+           HorizontalOptions="End" />
+</StackLayout>

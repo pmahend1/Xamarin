@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:TitleViewSample"
+             x:Class="TitleViewSample.MainPage"
+             NavigationPage.HasBackButton="False">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Image Source="company_logo"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="Start" />
+            <Label Text="Hoefling Software"
+                   HorizontalOptions="StartAndExpand"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="20"/>
+            <Image Source="company_logo"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="End" />
+        </StackLayout>
+    </NavigationPage.TitleView>
+    <Button Text="Go next"
+            Clicked="Button_Clicked" />
+</ContentPage>
